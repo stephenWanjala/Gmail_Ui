@@ -2,6 +2,6 @@
 <resources>
 
     <style name="Theme.GmailUi" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">#6FFFFFFF</item>
+        <item name="android:statusBarColor">@color/statusBarC</item>
     </style>
 </resources>

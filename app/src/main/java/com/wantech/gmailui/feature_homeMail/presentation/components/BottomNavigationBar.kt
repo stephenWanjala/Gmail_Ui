@@ -44,13 +44,7 @@ fun BottomNavigationBar(
                 selectedContentColor = MaterialTheme.colors.primary,
                 unselectedContentColor = MaterialTheme.colors.onSurface,
                 modifier = Modifier
-                    .padding(horizontal = 8.dp)
-/*                   .background(
-                        color = if (selected) {
-                            if (isSystemInDarkTheme()) NavNight else NavLight
-                        } else Color.Unspecified,
-                        shape = RoundedCornerShape(8.dp)
-                    ), */,
+                    .padding(horizontal = 8.dp),
                 icon = {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
@@ -75,20 +69,17 @@ fun BottomNavigationBar(
                                     modifier = Modifier.align(Alignment.BottomStart),
                                     imageVector = menuItem.icon,
                                     contentDescription = menuItem.description,
-//                                    tint = if(selected) MaterialTheme.colors.primary else MaterialTheme.colors.onSurface
                                 )
                             }
                         } else {
                             Icon(
                                 imageVector = menuItem.icon,
                                 contentDescription = menuItem.description,
-//                                tint = if(selected) MaterialTheme.colors.primary else MaterialTheme.colors.onSurface
                             )
                         }
 
                     }
-                },
-//                label = { Text(text = menuItem.name) }
+                }
             )
         }
     }

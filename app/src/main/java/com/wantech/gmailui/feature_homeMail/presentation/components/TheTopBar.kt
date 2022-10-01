@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
@@ -31,14 +30,21 @@ fun TheTopBar(
     TopAppBar(
         modifier = modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(50)),
-        backgroundColor = if (isSystemInDarkTheme()) Color.DarkGray else Color.LightGray.copy(alpha = 0.1f),
+            .padding(16.dp)
+            .height(40.dp)
 
+            .clip(RoundedCornerShape(20.dp)),
+        backgroundColor =if (isSystemInDarkTheme()) Color.DarkGray else Color.LightGray.copy(alpha = 0.9f),
+        contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.0.dp)
 
-        ) {
-        IconButton(onClick = { onClickNavigationIcon() }, modifier = Modifier) {
-            Icon(imageVector = appBarItem.navIcon, contentDescription = appBarItem.description)
-        }
+    ) {
+
+        Icon(imageVector = appBarItem.navIcon, contentDescription = appBarItem.description,
+            modifier = Modifier
+                .padding(start = 8.dp)
+                .clickable { onClickNavigationIcon() })
+        Spacer(modifier = Modifier.width(8.dp))
+
 
         Text(text = if (meetScreen) "Meet" else appBarItem.searchHint,
             modifier = if (meetScreen) Modifier.weight(1f) else Modifier
@@ -47,24 +53,23 @@ fun TheTopBar(
             textAlign = if (meetScreen) TextAlign.Center else null
         )
 
-        Spacer(modifier = Modifier.width(16.dp))
-        IconButton(
-            onClick = { onClickProfileIcon() },
+        Spacer(modifier = Modifier.width(8.dp))
+
+        Icon(
+            imageVector = appBarItem.profileIcon, contentDescription = "profile",
+            tint = if (isSystemInDarkTheme()) Color.DarkGray else Color(0xFFFAFAE4),
             modifier = Modifier
-                .width(40.dp)
-                .height(40.dp)
-                .padding(end = 16.dp)
+                .padding(end = 16.dp, top = 0.dp, bottom = 0.dp)
                 .clip(CircleShape)
+                .clickable { onClickProfileIcon() }
                 .background(
-                    color = if (isSystemInDarkTheme()) Color.Gray else Color.LightGray.copy(alpha = 0.2f),
+                    color = if (isSystemInDarkTheme()) Color.Gray else Color.Gray.copy(
+                        alpha = .7f
+                    ),
                     shape = CircleShape
                 )
-        ) {
-            Icon(
-                imageVector = appBarItem.profileIcon, contentDescription = "profile",
-                tint = if (isSystemInDarkTheme()) Color.DarkGray else Color.LightGray.copy(alpha = 0.8f)
-            )
-        }
+        )
+
 
     }
 }

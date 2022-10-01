@@ -9,8 +9,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Mail
 import androidx.compose.material.icons.filled.VideoFile
+import androidx.compose.material.icons.rounded.*
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    color = MaterialTheme.colors.background.copy(alpha = .1f)
                 ) {
                     val navController = rememberNavController()
 
@@ -68,7 +68,7 @@ class MainActivity : ComponentActivity() {
                                     MenuItem(
                                         id = Screen.HomeScreen.route,
                                         name = Screen.HomeScreen.route,
-                                        icon = Icons.Default.Mail,
+                                        icon = Icons.Rounded.Mail,
                                         description = "home screen",
                                         route = Screen.HomeScreen.route,
                                         badgeCount = 200
@@ -76,7 +76,7 @@ class MainActivity : ComponentActivity() {
                                     MenuItem(
                                         id = Screen.MeetScreen.route,
                                         name = Screen.MeetScreen.route,
-                                        icon = Icons.Default.VideoFile,
+                                        icon = Icons.Rounded.VideoLabel,
                                         description = "meetings screen",
                                         route = Screen.MeetScreen.route,
                                     )
@@ -84,9 +84,10 @@ class MainActivity : ComponentActivity() {
                                 navHostController = navController,
                                 onItemClick = { menuItem ->
                                     navController.navigate(menuItem.route) {
-//                                        navController.popBackStack()
-                                        isMeet = menuItem.route ==Screen.MeetScreen.route
-                                        this.popUpTo(menuItem.route)
+                                        isMeet = menuItem.route == Screen.MeetScreen.route
+                                        this.popUpTo(Screen.MeetScreen.route) {
+                                            inclusive = true
+                                        }
 
                                     }
                                 }
