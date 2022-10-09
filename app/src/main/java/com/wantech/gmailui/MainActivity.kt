@@ -25,14 +25,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
-                   Column(modifier = Modifier.fillMaxWidth().padding(16.dp),
-                   horizontalAlignment = Alignment.CenterHorizontally,
-                   verticalArrangement = Arrangement.Center) {
-                       Button(onClick = { /*TODO*/ }) {
-                           Text(text = "CLick Me")
-                       }
-                   }
+
 
                 }
             }
