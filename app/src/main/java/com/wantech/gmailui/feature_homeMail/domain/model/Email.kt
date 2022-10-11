@@ -9,7 +9,7 @@ import com.wantech.gmailui.feature_homeMail.domain.util.MailUserGroup
 data class Email(
     @PrimaryKey(autoGenerate = true) val mailId: Int,
     val address: MailUserGroup,
-    val MailSubject: String,
+    val mailSubject: String,
     val mailBody: String,
     val timeOfMail: MailTime,
     val isStarred: Boolean = false
