@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.wantech.gmailui.feature_homeMail.presentation.util.AppBarItem
 
@@ -39,10 +40,11 @@ fun TheTopBar(
             Icon(imageVector = appBarItem.navIcon, contentDescription = appBarItem.description)
         }
 
-        Text(text = if (meetScreen) "meet" else appBarItem.searchHint,
-            modifier = if (meetScreen) Modifier.fillMaxWidth(1f) else Modifier
+        Text(text = if (meetScreen) "Meet" else appBarItem.searchHint,
+            modifier = if (meetScreen) Modifier.weight(1f) else Modifier
                 .clickable { onCLickHintText() }
-                .weight(1f)
+                .weight(1f),
+            textAlign = if (meetScreen) TextAlign.Center else null
         )
 
         Spacer(modifier = Modifier.width(16.dp))
