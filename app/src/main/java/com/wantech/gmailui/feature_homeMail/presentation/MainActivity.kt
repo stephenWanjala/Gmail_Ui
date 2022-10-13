@@ -85,7 +85,9 @@ class MainActivity : ComponentActivity() {
                                 onItemClick = { menuItem ->
                                     navController.navigate(menuItem.route) {
 //                                        navController.popBackStack()
+                                        isMeet = menuItem.route ==Screen.MeetScreen.route
                                         this.popUpTo(menuItem.route)
+
                                     }
                                 }
                             )
