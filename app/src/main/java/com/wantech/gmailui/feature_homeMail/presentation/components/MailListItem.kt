@@ -13,7 +13,8 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.runtime.Composable
+import androidx.compose.material.icons.filled.StarOutline
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -27,12 +28,14 @@ fun MailListItem(
     modifier: Modifier = Modifier,
     onclickProfile: () -> Unit,
     onclickStarred: () -> Unit,
-    senderName:String,
+    senderName: String,
     subjectOfMail: String,
-    bodyOfMail:String,
-    time:String
+    bodyOfMail: String,
+    time: String,
+    mailStarred: Boolean =false
 
 ) {
+
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -47,10 +50,11 @@ fun MailListItem(
         Spacer(modifier = Modifier.width(8.dp))
         NameAndTime(
             userName = senderName,
-            subjectOfMail=subjectOfMail,
+            subjectOfMail = subjectOfMail,
             timeSent = time,
             onclickStarred = onclickStarred,
-            mailBody = bodyOfMail
+            mailBody = bodyOfMail,
+            mailStarred = mailStarred
         )
 
     }
@@ -83,7 +87,8 @@ fun NameAndTime(
     subjectOfMail: String,
     mailBody: String,
     timeSent: String,
-    onclickStarred: () -> Unit
+    onclickStarred: () -> Unit,
+    mailStarred:Boolean
 ) {
     Column(
         modifier = Modifier
@@ -137,9 +142,12 @@ fun NameAndTime(
                     overflow = TextOverflow.Ellipsis,
                 )
             }
-            IconButton(onClick = { onclickStarred() }) {
+            IconButton(onClick = {
+                onclickStarred()
+
+            }) {
                 Icon(
-                    imageVector = Icons.Default.Star,
+                    imageVector = if (mailStarred) Icons.Default.Star else Icons.Default.StarOutline,
                     contentDescription = "starred",
 
                     )

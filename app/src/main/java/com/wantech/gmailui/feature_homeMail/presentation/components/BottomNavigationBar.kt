@@ -45,12 +45,12 @@ fun BottomNavigationBar(
                 unselectedContentColor = MaterialTheme.colors.onSurface,
                 modifier = Modifier
                     .padding(horizontal = 8.dp)
-                    .background(
+/*                   .background(
                         color = if (selected) {
                             if (isSystemInDarkTheme()) NavNight else NavLight
                         } else Color.Unspecified,
                         shape = RoundedCornerShape(8.dp)
-                    ),
+                    ), */,
                 icon = {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
@@ -11,9 +12,15 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Mail
 import androidx.compose.material.icons.filled.VideoFile
 import androidx.compose.material.rememberScaffoldState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.wantech.gmailui.feature_homeMail.presentation.components.BottomNavigationBar
+import com.wantech.gmailui.feature_homeMail.presentation.components.TheTopBar
+import com.wantech.gmailui.feature_homeMail.presentation.util.AppBarItem
 import com.wantech.gmailui.feature_homeMail.presentation.util.MenuItem
 import com.wantech.gmailui.feature_homeMail.presentation.util.Screen
 import com.wantech.gmailui.ui.theme.GmailUiTheme
@@ -34,9 +41,27 @@ class MainActivity : ComponentActivity() {
 
                     val scaffoldState = rememberScaffoldState()
 //                    val scope = rememberCoroutineScope()
+                    var isMeet by remember(key1 = navController.currentDestination) {
+                        mutableStateOf(navController.currentDestination?.route == Screen.MeetScreen.route)
+                    }
 
                     Scaffold(
                         scaffoldState = scaffoldState,
+                        topBar = {
+
+                            TheTopBar(
+                                modifier = Modifier.fillMaxWidth(),
+                                appBarItem = AppBarItem(
+                                    description = "nav icon"
+                                ),
+                                onClickNavigationIcon = { /*TODO*/ },
+                                onCLickHintText = { /*TODO*/ },
+                                onClickProfileIcon = {},
+                                meetScreen = isMeet
+                            )
+
+
+                        },
                         bottomBar = {
                             BottomNavigationBar(
                                 bottomNavItems = listOf(
@@ -58,7 +83,10 @@ class MainActivity : ComponentActivity() {
                                 ),
                                 navHostController = navController,
                                 onItemClick = { menuItem ->
-                                    navController.navigate(menuItem.route)
+                                    navController.navigate(menuItem.route) {
+//                                        navController.popBackStack()
+                                        this.popUpTo(menuItem.route)
+                                    }
                                 }
                             )
                         }
